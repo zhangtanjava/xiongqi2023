@@ -1,0 +1,8 @@
+async:
+  executor:
+    thread:
+      core_pool_size : 1
+      max_pool_size : 2
+      queue_capacity : 20
+      keepAlive : 30
+      name_prefix : firebase-push
