@@ -24,39 +24,39 @@ public class QueueConsumer {
     private static ExecutorService executorService;
 
 
-
     @PostConstruct
     public void startJobTimer() {
-        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNamePrefix("delay-job-service").build();
-        executorService = new ThreadPoolExecutor(1, 10, 30,
-                TimeUnit.MINUTES, new LinkedBlockingQueue<>(10), namedThreadFactory);
 
-        executorService.execute(new ExecutorTask());
+        ThreadFactory namedThreadFactory = new ThreadFactoryBuilder().setNamePrefix("delay-job-service").build();
+        executorService = new ThreadPoolExecutor(1, 2, 30,
+                TimeUnit.MINUTES, new LinkedBlockingQueue<>(30), namedThreadFactory);
+
+        String queuename = "firebase-delay-queue";
+        RBlockingQueue<String> blockingQueue = redissonClient.getBlockingQueue(queuename);
+        RDelayedQueue<String> delayedQueue = redissonClient.getDelayedQueue(blockingQueue);
+        while (true) {
+            try {
+                String msg = blockingQueue.take();
+                System.out.println(msg);
+                executorService.execute(new ExecutorTask(msg));
+            } catch (Exception e) {
+                log.error(e.getMessage());
+            }
+        }
     }
 
     class ExecutorTask implements Runnable {
+        String object = "";
+
+        public ExecutorTask(String msg) {
+            object = msg;
+        }
+
         @SneakyThrows
         @Override
         public void run() {
-            String queuename = "delay-queue";
-            RBlockingQueue<String> blockingQueue = redissonClient.getBlockingQueue(queuename);
-            RDelayedQueue<String> delayedQueue = redissonClient.getDelayedQueue(blockingQueue);
-//            String msg = blockingQueue.take();
-//            RBlockingQueue blockingQueue = client.getBlockingQueue(jobsTag);
-            while (true) {
-                try {
-//                    DelayJobEntity job = (DelayJobEntity) blockingQueue.take();
-                    String msg = blockingQueue.take();
-                    System.out.println(msg);
-                    // 执行逻辑
-//                    ExecuteJob service = (ExecuteJob) context.getBean(job.getAClass());
-//                    service.execute(job);
-                } catch (Exception e) {
-                    log.error(e.getMessage());
-                }
-                // 防止疯狂打印日志
-                TimeUnit.SECONDS.sleep(10);
-            }
+            // 解析objec然后放入延时队列中
+
         }
     }
 
