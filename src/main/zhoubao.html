@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>周报生成器</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>周报生成器</h1>
+<form id="report-form">
+  <label for="name">姓名：</label>
+  <input type="text" id="name" name="name"><br><br>
+  <label for="week-ending">周末日期：</label>
+  <input type="date" id="week-ending" name="week-ending"><br><br>
+  <label for="report">工作总结：</label><br>
+  <textarea id="report" name="report" rows="10" cols="50"></textarea><br><br>
+  <label for="plan">下周计划：</label><br>
+  <textarea id="plan" name="plan" rows="10" cols="50"></textarea><br><br>
+  <button type="submit">生成周报</button>
+</form>
+<div id="response"></div>
+<script>
+  $(document).ready(function() {
+    $('#report-form').submit(function(event) {
+      event.preventDefault();
+      var formData = $(this).serialize();
+      $.ajax({
+        type: 'POST',
+        url: '/submit-report',
+        data: formData,
+        success: function(response) {
+          $('#response').text(response);
+        },
+        error: function() {
+          $('#response').text('出错了，请重试。');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>
