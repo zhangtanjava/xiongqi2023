@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <main class="layout hide-aside" id="content-inner">
+    <div id="page"><h1 class="page-title">观影馆</h1>
+      <div id="video-container">
+        <div id="default-image"></div>
+        <iframe id="video-player" width="100%" height="100%" src="" frameborder="0"
+                allowfullscreen=""></iframe>
+      </div>
+      <div id="input-wrapper"><select id="url-select">
+        <option value="https://jx.xmflv.com/?url=">Plan A</option>
+        <option value="https://vip.bljiex.com/?v=">Plan B</option>
+        <option value="https://www.yemu.xyz/?url=">Plan C</option>
+        <option value="https://www.yemu.xyz/v/c.php?url=">Plan D</option>
+        <option value="https://www.yemu.xyz/v/d.php?url=">Plan E</option>
+        <option value="https://www.yemu.xyz/v/e.php?url=">Plan F</option>
+        <option value="https://jx.qqwtt.com/?url=">Plan G</option>
+        <option value="https://www.1717yun.com/api/?url=">Plan H</option>
+        <option value="https://jx.jsonplayer.com/player/?url=">Plan I</option>
+        <option value="https://55o.co/?url=">Plan J</option>
+        <option value="https://jx.777jiexi.com/player/?url=">Plan K</option>
+        <option value="https://jx.m3u8.tv/jiexi/?url=">Plan L</option>
+        <option value="https://okjx.cc/?url=">Plan M</option>
+        <option value="https://jx.xmflv.com/?url=">Plan N</option>
+      </select><input id="url-input" type="text" placeholder=" 请输入视频链接链接"></div>
+      <div id="button-wrapper">
+        <button id="play-button">立即播放</button>
+      </div>
+      <script>document.querySelector("#url-input").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          document.querySelector("#play-button").click();
+        }
+      });
+
+      const videoPlayer = document.querySelector("#video-player");
+      const defaultImage = document.querySelector("#default-image");
+      const errorMessage = document.querySelector("#error-message");
+      const urlSelect = document.querySelector("#url-select");
+      const urlInput = document.querySelector("#url-input");
+      const playButton = document.querySelector("#play-button");
+
+      playButton.addEventListener("click", () => {
+        const selectedUrl = urlSelect.value;
+        const userInput = urlInput.value;
+        if (userInput === "") {
+          anzhiyu.snackbarShow("请输入正确的视频地址", false, 2000);
+          return;
+        }
+        const finalUrl = selectedUrl + userInput;
+        videoPlayer.src = finalUrl;
+        defaultImage.style.display = "none";
+        videoContainer.style.borderRadius = "0";
+      });
+      </script>
+      <style>#video-container {
+        width: 50vw;
+        height: 25vw;
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+
+      #default-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://image.licic.net/i/2023/05/29/647487cdf3305.png");
+        background-size: cover;
+      }
+
+      #error-message {
+        display: none;
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #bada55;
+        color: #bada55;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      /* Add this style */
+      #input-wrapper {
+        display: flex;
+        /* Set the display to flex */
+        flex-direction: row;
+        /* Set the direction to row */
+        align-items: center;
+        /* Align the items vertically */
+        margin-top: 20px;
+      }
+
+      /* Add this style */
+      #button-wrapper {
+        display: flex;
+        /* Set the display to flex */
+        flex-direction: row;
+        /* Set the direction to row */
+        align-items: center;
+        /* Align the items vertically */
+        margin-top: 15px;
+        margin-left: 95px;
+      }
+
+      #url-select,
+      #play-button {
+        height: 40px;
+        border-radius: 5px;
+        border: 2px solid #bada55;
+        background-color: #bada55;
+      }
+
+      #play-button,
+      #url-select {
+        width: 95px;
+      }
+
+      #url-input {
+        width: 100%;
+        height: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        border: #bada55 2px solid;
+        box-sizing: border-box;
+        /* 将盒模型设置为border-box */
+      }
+
+      #url-input:focus {
+        border: 2px solid #bada55;
+        outline: none;
+        /* 取消默认的蓝色外边框 */
+      }
+
+      #play-button:hover {
+        background-color: #bada55;
+      }
+
+      @media screen and (max-width: 900px) {
+        #video-container {
+          width: 90vw;
+          height: 40vw;
+        }
+
+        #button-wrapper {
+          margin-left: 88px;
+        }
+      }</style>
+      <hr>
+    </div>
+  </main>
+</head>
+<body>
+
+</body>
+</html>
