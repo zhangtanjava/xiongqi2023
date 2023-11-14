@@ -4,7 +4,7 @@ import cn.hutool.http.HttpUtil;
 
 import java.util.HashMap;
 
-public class HttpUtils {
+public class OrderFixUtils {
     public static void main(String[] args) {
 //        appleDutFix();
         noticeQiyiAppleFix();
