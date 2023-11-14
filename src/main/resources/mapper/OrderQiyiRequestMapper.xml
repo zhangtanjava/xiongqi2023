@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.xiongqi2023.generator.mapper.OrderQiyiRequestMapper" >
+  <resultMap id="BaseResultMap" type="com.example.xiongqi2023.generator.model.OrderQiyiRequest" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="requst_type" property="requstType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="retry_count" property="retryCount" jdbcType="INTEGER" />
+    <result column="fail_reason" property="failReason" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.xiongqi2023.generator.model.OrderQiyiRequest" extends="BaseResultMap" >
+    <result column="params" property="params" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, url, requst_type, status, retry_count, fail_reason, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    params
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from order_qiyi_request
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_qiyi_request
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.xiongqi2023.generator.model.OrderQiyiRequest" >
+    insert into order_qiyi_request (id, order_id, url, 
+      requst_type, status, retry_count, 
+      fail_reason, create_time, update_time, 
+      params)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{requstType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{retryCount,jdbcType=INTEGER}, 
+      #{failReason,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{params,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.xiongqi2023.generator.model.OrderQiyiRequest" >
+    insert into order_qiyi_request
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="requstType != null" >
+        requst_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="retryCount != null" >
+        retry_count,
+      </if>
+      <if test="failReason != null" >
+        fail_reason,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="params != null" >
+        params,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="requstType != null" >
+        #{requstType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="retryCount != null" >
+        #{retryCount,jdbcType=INTEGER},
+      </if>
+      <if test="failReason != null" >
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="params != null" >
+        #{params,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.xiongqi2023.generator.model.OrderQiyiRequest" >
+    update order_qiyi_request
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="requstType != null" >
+        requst_type = #{requstType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="retryCount != null" >
+        retry_count = #{retryCount,jdbcType=INTEGER},
+      </if>
+      <if test="failReason != null" >
+        fail_reason = #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="params != null" >
+        params = #{params,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.example.xiongqi2023.generator.model.OrderQiyiRequest" >
+    update order_qiyi_request
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      requst_type = #{requstType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      retry_count = #{retryCount,jdbcType=INTEGER},
+      fail_reason = #{failReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      params = #{params,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.xiongqi2023.generator.model.OrderQiyiRequest" >
+    update order_qiyi_request
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      requst_type = #{requstType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      retry_count = #{retryCount,jdbcType=INTEGER},
+      fail_reason = #{failReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
