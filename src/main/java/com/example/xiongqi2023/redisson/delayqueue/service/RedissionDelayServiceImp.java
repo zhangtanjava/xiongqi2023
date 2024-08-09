@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class RedissionDelayServiceImp implements RedissionDelayService {
-    @Autowired
+    @Autowired(required = false)
     RedissonClient redissonClient;
     @Override
     public void produce(String massage) {

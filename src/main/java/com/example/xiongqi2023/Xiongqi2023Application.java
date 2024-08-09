@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableApolloConfig() // 开启后apollo@Value才能生效
+//@EnableApolloConfig() // 开启后apollo@Value才能生效
 public class Xiongqi2023Application {
 
     public static void main(String[] args) {

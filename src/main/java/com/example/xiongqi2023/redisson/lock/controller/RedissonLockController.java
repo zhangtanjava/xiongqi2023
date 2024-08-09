@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/redisson")
 public class RedissonLockController {
-    @Autowired
+    @Autowired(required = false)
     private RedissonClient redissonClient;
 
     @GetMapping("/lock")

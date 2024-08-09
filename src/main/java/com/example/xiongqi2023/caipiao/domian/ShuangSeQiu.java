@@ -16,7 +16,7 @@ public class ShuangSeQiu implements Serializable {
     /**
      * 
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**

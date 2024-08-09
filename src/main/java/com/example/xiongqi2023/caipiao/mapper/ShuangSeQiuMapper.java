@@ -2,6 +2,7 @@ package com.example.xiongqi2023.caipiao.mapper;
 
 import com.example.xiongqi2023.caipiao.domian.ShuangSeQiu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author zhangtan
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-08-09 14:52:01
 * @Entity com.example.xiongqi2023.caipiao.domian.ShuangSeQiu
 */
+@Mapper
 public interface ShuangSeQiuMapper extends BaseMapper<ShuangSeQiu> {
 
 }

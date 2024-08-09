@@ -1,6 +1,7 @@
 package com.example.xiongqi2023.caipiao.service.impl;
 
 import com.example.xiongqi2023.caipiao.domian.ShuangSeQiu;
+import com.example.xiongqi2023.caipiao.mapper.ShuangSeQiuMapper;
 import com.example.xiongqi2023.caipiao.service.CaipiaoService;
 import com.example.xiongqi2023.caipiao.service.ShuangSeQiuService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import java.util.List;
 public class CaipiaoServiceImpl implements CaipiaoService {
     @Autowired
     ShuangSeQiuService shuangSeQiuService;
+
     @Override
     public void readCvsAndSave(String fileName) {
 
@@ -36,39 +38,29 @@ public class CaipiaoServiceImpl implements CaipiaoService {
 
             // 遍历CSV文件的每一行并获取单元格数据
             for (CSVRecord record : parser) {
-                if (record.get(1).equals("期号")) {
-                    continue;
-                }
-                String str = "";
-                for (int i = 0; i < record.size(); i++) {
-                    if (i < record.size() - 1) {
-                        if (null != record.get(i)) {
-                            ShuangSeQiu shuangSeQiu = new ShuangSeQiu();
-                            shuangSeQiu.setIssue(Integer.valueOf(record.get(1)));
-                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-                            String openTime = record.get(2);
-                            try {
-                                shuangSeQiu.setOpenTime(simpleDateFormat.parse(openTime));
-                            } catch (ParseException e) {
-                                throw new RuntimeException(e);
-                            }
-                            shuangSeQiu.setRedBall(record.get(3));
-                            shuangSeQiu.setBlackBall(Integer.valueOf(record.get(4)));
+                ShuangSeQiu shuangSeQiu = new ShuangSeQiu();
 
-                            shuangSeQius.add(shuangSeQiu);
-                        }
-                    }
-
+                shuangSeQiu.setIssue(Integer.valueOf(record.get(1)));
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                String openTime = record.get(2);
+                try {
+                    shuangSeQiu.setOpenTime(simpleDateFormat.parse(openTime));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
                 }
+                shuangSeQiu.setRedBall(record.get(3));
+                shuangSeQiu.setBlackBall(Integer.valueOf(record.get(4)));
+
+                shuangSeQius.add(shuangSeQiu);
             }
             // 关闭流
             parser.close();
             reader.close();
 
-            shuangSeQiuService.saveBatch(shuangSeQius);
+            shuangSeQiuService.saveBatch(shuangSeQius,shuangSeQius.size());
 
         } catch (Exception e) {
-            log.info("readCvsAndSave 异常", e.getMessage());
+            log.info("readCvsAndSave 异常:{}", e.getMessage());
         }
 
     }
