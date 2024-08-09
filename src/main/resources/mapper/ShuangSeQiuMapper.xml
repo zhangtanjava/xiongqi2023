@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.xiongqi2023.caipiao.mapper.ShuangSeQiuMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.xiongqi2023.caipiao.domian.ShuangSeQiu">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="issue" column="issue" jdbcType="INTEGER"/>
+            <result property="openTime" column="open_time" jdbcType="TIMESTAMP"/>
+            <result property="redBall" column="red_ball" jdbcType="VARCHAR"/>
+            <result property="blackBall" column="black_ball" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,issue,open_time,
+        red_ball,black_ball
+    </sql>
+</mapper>
