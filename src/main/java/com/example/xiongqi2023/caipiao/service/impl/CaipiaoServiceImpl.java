@@ -38,10 +38,13 @@ public class CaipiaoServiceImpl implements CaipiaoService {
 
             // 遍历CSV文件的每一行并获取单元格数据
             for (CSVRecord record : parser) {
+                if("期号".equals(record.get(1)))
+                    continue;
+
                 ShuangSeQiu shuangSeQiu = new ShuangSeQiu();
 
                 shuangSeQiu.setIssue(Integer.valueOf(record.get(1)));
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 String openTime = record.get(2);
                 try {
                     shuangSeQiu.setOpenTime(simpleDateFormat.parse(openTime));
