@@ -8,6 +8,7 @@ public class OrderFixUtils {
     public static void main(String[] args) {
 //        appleDutFix();
         noticeQiyiAppleFix();
+        System.out.println("222223");
     }
     /**
      * 独立站苹果代扣数据补偿
