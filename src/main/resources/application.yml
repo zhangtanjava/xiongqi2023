@@ -14,10 +14,15 @@ server:
 # 数据库名：mysql，用户名root，密码123456
 spring:
   datasource:
-    username: root
-    password: Ztan05022317a
-    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+#    username: root
+#    password: Ztan05022317a
+#    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ssports_tech
+    password: Qwer1234%
+    url: jdbc:mysql://ssports-public.mysql.polardb.rds.aliyuncs.com:3306/ssports_shop
+
+
 
 # mybatis-plus配置
 mybatis-plus:
